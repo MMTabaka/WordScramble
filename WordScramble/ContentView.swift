@@ -9,8 +9,16 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        List {
+            Text("Hello World")
+            ForEach(0..<5) {
+                Text("Dynamic row\($0)")
+            }
+            Text("Hello World")
+            Text("Hello World")
+            Text("Hello World")
+        }
+        .listStyle(.grouped)
     }
 }
 
