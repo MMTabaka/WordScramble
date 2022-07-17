@@ -11,6 +11,7 @@ struct ContentView: View {
     @State private var usedWords = [String]()
     @State private var rootWord = ""
     @State private var newWord = ""
+    @State private var score = 0
     
     @State private var errorTitle = ""
     @State private var errorMessage = ""
@@ -42,9 +43,15 @@ struct ContentView: View {
                 Text(errorMessage)
             }
             .toolbar() {
-                Button("New Game") {
-                    startGame()
-                    usedWords = [String]()
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Text("Score: \(score)")
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("New Game") {
+                        startGame()
+                        usedWords = [String]()
+                        score = 0
+                    }
                 }
             }
         }
@@ -82,6 +89,7 @@ struct ContentView: View {
         withAnimation {
             usedWords.insert(answer, at: 0)
         }
+        score += answer.count
         newWord = ""
     }
     
