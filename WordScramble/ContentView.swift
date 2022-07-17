@@ -53,6 +53,16 @@ struct ContentView: View {
             return
         }
         
+        guard answer != rootWord else {
+            wordError(title: "Word same as original", message: "Be more creative!")
+            return
+        }
+        
+        guard answer.count > 2 else {
+            wordError(title: "Word too short", message: "Your word needs to be at least 3 letters long!")
+            return
+        }
+        
         guard isPossible(word: answer) else {
             wordError(title: "Word not possible", message: "You can't spell that word from '\(rootWord)!")
             return
